@@ -106,7 +106,7 @@ walkmanpass/
 
 🔐 Security Architecture — How It Works
 
-Understanding the security model is important before deploying.
+  Understanding the security model is important before deploying.
 
 1. Registration
 
@@ -141,9 +141,11 @@ user
 
 
 🛠️ Tech Stack
+
 LayerTechnologyFrontendReact 18, Vite, React Router, Tailwind CSSBackendNode.js, Express.jsDatabaseMongoDB AtlasODMMongooseAuthenticationJWT (jsonwebtoken)Password HashingArgon2idEncryptionAES-256-GCM (Node.js crypto)Key DerivationPBKDF2 — SHA-256, 100k iterationsEmailNodemailer + Gmail SMTP
 
 🚀 Local Setup
+
 Prerequisites
 
 Node.js 18+
@@ -155,6 +157,7 @@ git https://github.com/murtaza0012-f/walkmanpass.git
 cd walkmanpass
 
 2. Install dependencies
+   
 # Backend
 cd server
 npm install
@@ -164,6 +167,7 @@ cd ../client
 npm install
 
 3. Configure environment variables
+   
 Create a .env file in the server/ directory:
 env# MongoDB
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/walkmanpass
