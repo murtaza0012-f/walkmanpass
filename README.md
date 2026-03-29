@@ -10,35 +10,64 @@ Built by Jacqueline, Murtaza and Julien at the AFEC La Rochelle Hackathon 2026.
 ✨ Features
 
 🔒 AES-256-GCM encryption — every password encrypted with a unique IV
+
 🧠 Zero-knowledge architecture — the server never sees your passwords in plain text
+
 🔑 Argon2id password hashing — the most secure hashing algorithm available
+
 🪙 JWT authentication — stateless, secure sessions (24h expiry)
+
 🛡️ PBKDF2 key derivation — 100,000 iterations, SHA-256
+
 🔁 Recovery key system — reset your master password without losing your data
+
 📧 Email notifications — welcome email + password reset confirmation
+
 🗂️ Password categories — social, banking, email, shopping, work, other
+
 🔍 Search and filter — instant search across your vault
+
 📋 One-click copy — copy passwords securely without exposing them on screen
+
 🎲 Password generator — generate strong random passwords
+
 ✏️ Full CRUD — create, view, edit, delete password entries
 
 🏗️ Architecture
+
 walkmanpass/
+
 ├── client/                    # React frontend (Vite)
+
 │   └── src/
+
 │       ├── components/
+
 │       │   ├── PasswordRow.jsx           # Validation password chars 
+
 │       ├── hooks/
+
 │       │   ├── useDashboard.jsx           # To handle passwords
+
 │       ├── pages/
+
 │       │   ├── HomePage.jsx           # Landing page
+
 │       │   ├── AuthPage.jsx           # Login + Register
+
 │       │   ├── DashboardPage.jsx      # Password vault
+
 │       │   └── ForgotPasswordPage.jsx # Recovery flow
+
 │       └── App.jsx
+
 │       └── main.jsx
+
 │       └── index.css
+
+
 │
+
 └── server/                    # Node.js + Express backend
     ├── config/
     │   └── database.js      # connecting to database
@@ -59,7 +88,9 @@ walkmanpass/
     └── server.js                      # server manager
 
 🔐 Security Architecture — How It Works
+
 Understanding the security model is important before deploying.
+
 1. Registration
 
 User chooses a master password
