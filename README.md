@@ -69,22 +69,39 @@ walkmanpass/
 │
 
 └── server/                    # Node.js + Express backend
+  
     ├── config/
+    
     │   └── database.js      # connecting to database
+    
     ├── controllers/
+    
     │   ├── AuthController.js          # Register, Login, Reset
+    
     │   └── PasswordController.js      # CRUD for passwords
+    
     ├── models/
+    
     │   ├── User.js                    # User schema (Mongoose)
+    
     │   └── Password.js                # Password schema (Mongoose)
+    
     ├── middleware/
+    
     │   └── auth.js                    # JWT middleware
+    
     ├── routes/
+    
     │   └── auth.js                    # routes for login
+    
     │   └── passwords.js               # routes for passwords
+    
     └── services/
+    
         ├── cryptoService.js           # AES-256-GCM + PBKDF2
+        
         └── emailService.js            # Nodemailer (Gmail)
+    
     └── server.js                      # server manager
 
 🔐 Security Architecture — How It Works
