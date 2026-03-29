@@ -1,12 +1,14 @@
 🔐 WalkmanPass
 
 A zero-knowledge password manager built with the MERN stack — AES-256-GCM encryption, Argon2id hashing, and JWT authentication. Built during the AFEC Hackathon 2026.
+
 📌 What is WalkmanPass?
 
 WalkmanPass is a full-stack password manager where your data is never visible to the server. Every password is encrypted client-side using a key derived from your master password — which we never store or transmit in plain text.
 Built by Jacqueline, Murtaza and Julien at the AFEC La Rochelle Hackathon 2026.
 
 ✨ Features
+
 🔒 AES-256-GCM encryption — every password encrypted with a unique IV
 🧠 Zero-knowledge architecture — the server never sees your passwords in plain text
 🔑 Argon2id password hashing — the most secure hashing algorithm available
