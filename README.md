@@ -55,7 +55,6 @@ walkmanpass/
         └── emailService.js            # Nodemailer (Gmail)
     └── server.js                      # server manager
 
-
 🔐 Security Architecture — How It Works
 Understanding the security model is important before deploying.
 1. Registration
