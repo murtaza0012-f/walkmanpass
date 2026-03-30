@@ -2,6 +2,8 @@
 
 A zero-knowledge password manager built with the MERN stack — AES-256-GCM encryption, Argon2id hashing, and JWT authentication. Built during the AFEC Hackathon 2026.
 
+🔗 **Live Demo:** https://walkmanpass.vercel.app
+
 📌 What is WalkmanPass?
 
 WalkmanPass is a full-stack password manager where your data is never visible to the server. Every password is encrypted client-side using a key derived from your master password — which we never store or transmit in plain text.
