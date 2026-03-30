@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import argon2 from 'argon2';
+import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import CryptoService from '../services/cryptoService.js';
 
@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
         min: 8,
         max: 64
     },
-    // Salt pour dériver la clé de chiffrement (ajouté pour le gestionnaire de mots de passe)
+    // Salt pour dériver la clé de chiffrement
     encryptionSalt: {
         type: String,
         required: true
@@ -93,13 +93,8 @@ userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
 
     try {
-        // Je hash le password avec Argon2id
-        this.password = await argon2.hash(this.password, {
-            type: argon2.argon2id,
-            memoryCost: 65536,
-            timeCost: 3,
-            parallelism: 4
-        });
+        const salt = await bcrypt.genSalt(12);
+        this.password = await bcrypt.hash(this.password, salt);
         console.log('Password hashé pour:', this.firstName);
         next();
     } catch (error) {
@@ -110,22 +105,21 @@ userSchema.pre('save', async function (next) {
 
 // Méthode pour vérifier le password
 userSchema.methods.verifyPassword = async function (candidatePassword) {
-    return await argon2.verify(this.password, candidatePassword);
+    return await bcrypt.compare(candidatePassword, this.password);
 };
 
 // Méthode pour obtenir la clé de chiffrement
 userSchema.methods.getEncryptionKey = function (password) {
-    // Je dérive une clé depuis le password et le salt
     return CryptoService.deriveKey(password, this.encryptionSalt);
 };
 
 // Méthode pour setup la recovery key
 userSchema.methods.setupRecovery = function (masterPassword) {
 
-    // GénÃ¨re une recovery key aléatoire (32 bytes = 64 caractÃ¨res hex)
+    // Génère une recovery key aléatoire (32 bytes = 64 caractères hex)
     const recoveryKey = crypto.randomBytes(32).toString('hex');
 
-    // GénÃ¨re un salt et IV pour la recovery
+    // Génère un salt et IV pour la recovery
     this.recoveryKeySalt = crypto.randomBytes(32).toString('hex');
     const iv = crypto.randomBytes(12);
     this.recoveryKeyIV = iv.toString('hex');
@@ -148,7 +142,7 @@ userSchema.methods.setupRecovery = function (masterPassword) {
         'sha256'
     );
 
-    // Chiffre la clé principale avec la recovery key
+    // Chiffre la clé principale avec la recovery key (AES-256-GCM)
     const cipher = crypto.createCipheriv('aes-256-gcm', recoveryDerivedKey, iv);
     let encrypted = cipher.update(masterKey.toString('hex'), 'utf8', 'hex');
     encrypted += cipher.final('hex');
@@ -157,7 +151,7 @@ userSchema.methods.setupRecovery = function (masterPassword) {
     // Stocke : encrypted:authTag
     this.encryptedMasterKey = encrypted + ':' + authTag.toString('hex');
 
-    return recoveryKey; // Ã€ afficher UNE FOIS Ã  l'utilisateur
+    return recoveryKey; // À afficher UNE FOIS à l'utilisateur
 };
 
 const User = mongoose.model('User', userSchema);
