@@ -1,13 +1,13 @@
 🔐 WalkmanPass
 
-A zero-knowledge password manager built with the MERN stack — AES-256-GCM encryption, Argon2id hashing, and JWT authentication. Built during the AFEC Hackathon 2026.
+A zero-knowledge password manager built with the MERN stack — AES-256-GCM encryption, bcrypt hashing, and JWT authentication. Built during the AFEC Hackathon 2026.
 
 🔗 **Live Demo:** https://walkmanpass.vercel.app
 
 📌 What is WalkmanPass?
 
 WalkmanPass is a full-stack password manager where your data is never visible to the server. Every password is encrypted client-side using a key derived from your master password — which we never store or transmit in plain text.
-Built by Jacqueline, Murtaza and Julien at the AFEC La Rochelle Hackathon 2026.
+Built by Jacqueline, Murtaza and Julien at the AFEC La Rochelle Hackathon 2026, the main repository link is here: https://github.com/Koraya964/Gestionnaire-de-Mot-de-passe-Walkman.
 
 ✨ Features
 
@@ -15,7 +15,7 @@ Built by Jacqueline, Murtaza and Julien at the AFEC La Rochelle Hackathon 2026.
 
 🧠 Zero-knowledge architecture — the server never sees your passwords in plain text
 
-🔑 Argon2id password hashing — the most secure hashing algorithm available
+🔑 Argon2id password hashing — the most secure hashing algorithm available in the main project but used bcrypt in the live project
 
 🪙 JWT authentication — stateless, secure sessions (24h expiry)
 
@@ -144,7 +144,7 @@ user
 
 🛠️ Tech Stack
 
-LayerTechnologyFrontendReact 18, Vite, React Router, Tailwind CSSBackendNode.js, Express.jsDatabaseMongoDB AtlasODMMongooseAuthenticationJWT (jsonwebtoken)Password HashingArgon2idEncryptionAES-256-GCM (Node.js crypto)Key DerivationPBKDF2 — SHA-256, 100k iterationsEmailNodemailer + Gmail SMTP
+LayerTechnologyFrontendReact 18, Vite, React Router, Tailwind CSSBackendNode.js, Express.jsDatabaseMongoDB AtlasODMMongooseAuthenticationJWT (jsonwebtoken)Password HashingbcryptidEncryptionAES-256-GCM (Node.js crypto)Key DerivationPBKDF2 — SHA-256, 100k iterationsEmailNodemailer + Gmail SMTP
 
 🚀 Local Setup
 
