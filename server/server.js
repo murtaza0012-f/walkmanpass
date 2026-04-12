@@ -29,6 +29,7 @@ app.use(helmet({
                 "https://cdn.tailwindcss.com",
                 "https://cdnjs.cloudflare.com",
                 "http://localhost:5000",
+                "https://walkmanpass.vercel.app",
             ],
             styleSrc: [
                 "'self'",
@@ -42,15 +43,17 @@ app.use(helmet({
                 "blob:",
                 "http://localhost:5173",
                 "http://localhost:3000",
-                "https://*"
+                "https://walkmanpass.vercel.app"
             ],
             scriptSrcAttr: ["'unsafe-inline'"],
             connectSrc: [
                 "'self'",
-                "http://localhost:3000",
-                "http://localhost:5173",
-                "http://localhost:5000",
-                "http://localhost:5500"
+                "https://walkmanpass.vercel.app",
+                "https://walkmanpass-api.onrender.com",
+                // "http://localhost:3000",
+                // "http://localhost:5173",
+                // "http://localhost:5000",
+                // "http://localhost:5500"
             ],
             fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com", "data:"],
             objectSrc: ["'none'"],
@@ -66,7 +69,7 @@ app.use(helmet({
     }
 }));
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000 ', 'http://127.0.0.1:5500', 'http://127.0.0.1:5000'],
+    origin: ['http://localhost:3000', 'https://walkmanpass.vercel.app'],
     credentials: true
 }));
 
@@ -77,7 +80,8 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         secure: process.env.NODE_ENV === 'production', // true si https
-        httpOnly: false, // Empêche le vol de cookie via JS
+        httpOnly: true, // Empêche le vol de cookie via JS
+        sameSite: 'none',
         maxAge: 3600000 // 1 heure
     }
 }));
